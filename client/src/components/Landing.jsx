@@ -14,6 +14,7 @@ import {
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import securec from "../images/securecoding.gif";
 
 const Landing = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -43,21 +44,21 @@ const Landing = () => {
       role: "Founder & CEO",
       bio: "Passionate about revolutionizing education through technology.",
       image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        "https://4kwallpapers.com/images/walls/thumbs/13681.png",
     },
     {
-      name: "Vikram Ram",
+      name: "Vikram ",
       role: "CTO",
       bio: "Expert in creating immersive learning experiences with cutting-edge tech.",
       image:
-        "https://res.cloudinary.com/datowd0cc/image/upload/v1725973402/vikram/fsxhed3msr2fsupq8azd.png",
+        "https://4kwallpapers.com/images/walls/thumbs/15649.png",
     },
     {
-      name: "Mike Johnson",
+      name: "Ram",
       role: "Lead Instructor",
       bio: "Dedicated to empowering students with practical coding skills.",
       image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        "https://4kwallpapers.com/images/walls/thumbs_3t/15164.png",
     },
   ];
 
@@ -69,11 +70,23 @@ const Landing = () => {
     { year: 2023, event: "Introduced AI-powered personalized learning" },
   ];
 
-  const Card = ({ title, description, icon }) => (
+  // const Card = ({ title, description, icon }) => (
+  //   <div className="max-w-xs w-full bg-gray-800 p-6 rounded-xl shadow-lg">
+  //     <div className="flex items-center justify-center mb-4">{icon}</div>
+  //     <h4 className="text-xl font-semibold text-white mb-2">{title}</h4>
+  //     <p className="text-gray-300">{description}</p>
+  //   </div>
+  // );
+  const Card = ({ title, description, icon, image }) => (
     <div className="max-w-xs w-full bg-gray-800 p-6 rounded-xl shadow-lg">
-      <div className="flex items-center justify-center mb-4">
-        {icon}
-      </div>
+      {image && (
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-40 object-cover rounded-t-xl mb-4"
+        />
+      )}
+      <div className="flex items-center justify-center mb-4">{icon}</div>
       <h4 className="text-xl font-semibold text-white mb-2">{title}</h4>
       <p className="text-gray-300">{description}</p>
     </div>
@@ -86,17 +99,22 @@ const Landing = () => {
       }`}
     >
       {/* Navbar */}
-      
+
       {/* Hero Section */}
       <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
+        className="relative h-screen flex items-center justify-center bg-cover bg-center "
         style={{
+          // backgroundImage:
+          //   "url(https://cdn.sanity.io/images/tlr8oxjg/production/32820aa3124688cb4caccc029f13c4b4ea28df07-1456x816.png)",
           backgroundImage:
-            "url(https://cdn.sanity.io/images/tlr8oxjg/production/32820aa3124688cb4caccc029f13c4b4ea28df07-1456x816.png)",
+          "url(https://cdn.analyticsvidhya.com/wp-content/uploads/2024/04/Top-8-Coding-Platforms-for-Data-Science-Beginner-01-scaled.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         {/* Glassmorphism Background */}
-        <div className="absolute inset-0 bg-gray-800/30 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gray-800/30 backdrop-blur-[1px]"></div>
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -124,27 +142,32 @@ const Landing = () => {
       {/* Services Section */}
       {/* <section id="services" className="py-20 bg-gradient-to-b from-gray-800 to-black"> */}
       <section id="services" className="py-20 bg-gray-900">
-    <div className="container mx-auto px-4">
-      <h3 className="text-4xl font-bold text-center text-white mb-12">Our Services</h3>
-      <div className="flex flex-wrap justify-center gap-8">
-        <Card
-          title="Programming Challenges"
-          description="Enhance your skills with a variety of coding challenges tailored to all levels."
-          icon={<FaCode className="text-blue-500 text-4xl" />}
-        />
-        <Card
-          title="Expert Tutorials"
-          description="Learn from industry experts with comprehensive tutorials and guides."
-          icon={<FaRocket className="text-blue-500 text-4xl" />}
-        />
-        <Card
-          title="Secure Coding Practices"
-          description="Master secure coding techniques to build robust and safe applications."
-          icon={<FaLock className="text-blue-500 text-4xl" />}
-        />
-      </div>
-    </div>
-  </section>
+        <div className="container mx-auto px-4">
+          <h3 className="text-4xl font-bold text-center text-white mb-12">
+            Our Services
+          </h3>
+          <div className="flex flex-wrap justify-center gap-8">
+            <Card
+              title="Programming Challenges"
+              description="Enhance your skills with a variety of coding challenges tailored to all levels."
+              image="https://miro.medium.com/v2/resize:fit:1400/0*7BHP5VyZJX9IYMv4.jpeg"
+              icon={<FaCode className="text-blue-500 text-4xl" />}
+            />
+            <Card
+              title="Expert Tutorials"
+              description="Learn from industry experts with comprehensive tutorials and guides."
+              image="https://static.vecteezy.com/system/resources/thumbnails/035/676/746/small_2x/ai-generated-programmer-analyzing-data-in-night-office-with-multiple-computers-free-photo.jpg"
+              icon={<FaRocket className="text-blue-500 text-4xl" />}
+            />
+            <Card
+              title="Secure Coding Practices"
+              description="Master secure coding techniques to build robust and safe applications."
+              image={securec}
+              icon={<FaLock className="text-blue-500 text-4xl" />}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Our Values */}
       <section data-aos="fade-up" className="mb-16">
@@ -199,16 +222,13 @@ const Landing = () => {
                 <h3 className="text-xl font-semibold text-center mb-2">
                   {member.name}
                 </h3>
-                <p className="text-center text-blue-400 mb-2">
-                  {member.role}
-                </p>
+                <p className="text-center text-blue-400 mb-2">{member.role}</p>
                 <p className="text-center">{member.bio}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
 
       {/* Contact Us */}
       <section
@@ -233,10 +253,7 @@ const Landing = () => {
               </a>{" "}
               or use the form below to subscribe to our newsletter.
             </p>
-            <form
-              onSubmit={handleSubscribe}
-              className="space-y-4"
-            >
+            <form onSubmit={handleSubscribe} className="space-y-4">
               <input
                 type="email"
                 value={email}
@@ -318,8 +335,8 @@ const Landing = () => {
         // className={`py-6 ${
         //   darkMode ? "bg-gray-800" : "bg-gray-200"
         // }`}
-        
-        className="py-6 bg-gradient-to-b from-gray-800 to-black" 
+
+        className="py-6 bg-gradient-to-b from-slate-900 to-black"
       >
         <div className="container mx-auto px-6 text-center">
           <p>&copy; 2024 USCL. All rights reserved.</p>

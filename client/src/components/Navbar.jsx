@@ -10,7 +10,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white">
+    // <nav className="bg-gradient-to-r from-slate-900 to-slate-700 text-white">
+    <nav className="bg-gradient-to-b from-black to-slate-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -36,7 +37,7 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/learn"
+                to="/courses"
                 className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out"
               >
                 <FaBook className="inline-block mr-1" /> Courses
@@ -80,7 +81,7 @@ const Navbar = () => {
             <FaHome className="inline-block mr-1" /> Home
           </Link>
           <Link
-            to="/learn"
+            to="/courses"
             className="hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ease-in-out"
           >
             <FaBook className="inline-block mr-1" /> Courses
