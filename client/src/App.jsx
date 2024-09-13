@@ -15,6 +15,7 @@ import Webdevlopment from "./screens/Webdevlopment";
 import Linux from "./screens/Linux";
 import Java from "./screens/Java";
 import Cpp from "./screens/Cpp";
+import Javacourse from "./screens/Javacourse";
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/courses/linux" element={<Linux />} />
           <Route path="/courses/java" element={<Java />} />
           <Route path="/courses/c++" element={<Cpp />} />
+          <Route path="/courses/javacourse" element={<Javacourse />} />
         </Routes>
         </BrowserRouter>
     </>

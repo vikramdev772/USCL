@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaCode, FaLaptopCode, FaGraduationCap } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+
 
 const Java = () => {
   return (
@@ -24,9 +26,12 @@ const Java = () => {
               Dive into the world of Java programming with our comprehensive course. From basic syntax to advanced concepts,
               you'll gain the skills needed to build robust applications and kickstart your career in software development.
             </p>
+            <Link to="/courses/javacourse">
             <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold py-3 px-6 rounded-full hover:from-blue-600 hover:to-blue-800 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+              {/* View Details */}
               Enroll Now
             </button>
+            </Link>
           </div>
         </div>
 
@@ -50,9 +55,11 @@ const Java = () => {
 
         <div className="text-center">
           <h2 className="text-3xl font-semibold mb-6 text-blue-300">Ready to become a Java expert?</h2>
+          <Link to="/courses/javacourse">
           <button className="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Start Learning Today
           </button>
+          </Link>
         </div>
       </div>
     </div>
