@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCode, FaServer, FaDatabase, FaCheckCircle } from "react-icons/fa";
 import Fs from "../images/FS.png";
+import { Link } from "react-router-dom";
 const Webdevlopment = () => {
   return (
     // <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white font-sans">
@@ -10,9 +11,11 @@ const Webdevlopment = () => {
         <h1 className="text-3xl md:text-4xl font-bold mb-4 md:mb-0">
           Full-Stack Web Development Course
         </h1>
+        <Link to="/courses/web2.0">
         <button className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
           Enroll Now
         </button>
+        </Link>
       </header>
 
       {/* Main Content */}
@@ -83,9 +86,11 @@ const Webdevlopment = () => {
             Enroll now and take the first step towards becoming a full-stack
             developer!
           </p>
+          <Link to="/courses/web2.0">
           <button className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-3 px-8 rounded-full text-xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Enroll in the Course
           </button>
+          </Link>
         </section>
       </main>
 

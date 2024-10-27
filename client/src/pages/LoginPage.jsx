@@ -1,149 +1,25 @@
-// import React, { useState } from 'react';
-// import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
-// import { Link } from 'react-router-dom';
-
-// const LoginPage = () => {
-//   const [formData, setFormData] = useState({
-//     email: '',
-//     password: ''
-//   });
-//   const [errors, setErrors] = useState({});
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData(prevState => ({
-//       ...prevState,
-//       [name]: value
-//     }));
-//     if (errors[name]) {
-//       setErrors(prevErrors => ({ ...prevErrors, [name]: '' }));
-//     }
-//   };
-
-//   const validateForm = () => {
-//     let isValid = true;
-//     const newErrors = {};
-
-//     if (!formData.email.trim()) {
-//       newErrors.email = 'Email is required';
-//       isValid = false;
-//     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-//       newErrors.email = 'Email is invalid';
-//       isValid = false;
-//     }
-
-//     if (!formData.password) {
-//       newErrors.password = 'Password is required';
-//       isValid = false;
-//     }
-
-//     setErrors(newErrors);
-//     return isValid;
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (validateForm()) {
-//       console.log('Form submitted:', formData);
-//       setFormData({
-//         email: '',
-//         password: ''
-//       });
-//     }
-//   };
-
-//   const togglePasswordVisibility = () => {
-//     setShowPassword(!showPassword);
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4 sm:px-6 lg:px-8">
-//       <div className="max-w-md w-full space-y-8 bg-gray-800 p-8 rounded-xl shadow-2xl">
-//         <div>
-//           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Sign in to your account</h2>
-//         </div>
-//         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-//           <div className="rounded-md shadow-sm -space-y-px">
-//             <div className="mb-4">
-//               <label htmlFor="email-address" className="sr-only">Email address</label>
-//               <div className="relative">
-//                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                   <FaEnvelope className="h-5 w-5 text-gray-400" />
-//                 </div>
-//                 <input
-//                   id="email-address"
-//                   name="email"
-//                   type="email"
-//                   autoComplete="email"
-//                   required
-//                   className={`appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border ${errors.email ? 'border-red-500' : 'border-gray-600'} placeholder-gray-500 text-white bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-//                   placeholder="Email address"
-//                   value={formData.email}
-//                   onChange={handleChange}
-//                 />
-//               </div>
-//               {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}
-//             </div>
-//             <div>
-//               <label htmlFor="password" className="sr-only">Password</label>
-//               <div className="relative">
-//                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-//                   <FaLock className="h-5 w-5 text-gray-400" />
-//                 </div>
-//                 <input
-//                   id="password"
-//                   name="password"
-//                   type={showPassword ? "text" : "password"}
-//                   autoComplete="current-password"
-//                   required
-//                   className={`appearance-none rounded-none relative block w-full px-3 py-2 pl-10 border ${errors.password ? 'border-red-500' : 'border-gray-600'} placeholder-gray-500 text-white bg-gray-700 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-//                   placeholder="Password"
-//                   value={formData.password}
-//                   onChange={handleChange}
-//                 />
-//                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-//                   <button
-//                     type="button"
-//                     className="text-gray-400 hover:text-gray-300 focus:outline-none"
-//                     onClick={togglePasswordVisibility}
-//                   >
-//                     {showPassword ? <FaEyeSlash className="h-5 w-5" /> : <FaEye className="h-5 w-5" />}
-//                   </button>
-//                 </div>
-//               </div>
-//               {errors.password && <p className="mt-2 text-sm text-red-500">{errors.password}</p>}
-//             </div>
-//           </div>
-
-//           <div>
-//             <button
-//               type="submit"
-//               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-//             >
-//               Sign In
-//             </button>
-//           </div>
-//           <div className="flex items-center justify-between">
-//             <p className="text-sm text-gray-400">Don't have an account?</p>
-//             <Link to="/signup" className="text-sm text-indigo-400 hover:text-indigo-500">Sign Up</Link>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LoginPage;
-
-
 import React, { useState } from 'react';
-import { FaEnvelope, FaLock, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import {
+  FaEnvelope,
+  FaLock,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaGoogle,
+  FaArrowRight
+} from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import authUrl from '../api/authURL';
+
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
+  const [apiError, setApiError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -169,95 +45,201 @@ const LoginPage = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form submitted', { email, password });
-      // Handle form submission
+      setIsLoading(true);
+      try {
+        const response = await axios.post(`${authUrl}/login`, {
+          email,
+          password,
+        });
+        console.log('Login successful:', response.data);
+        navigate('/main');
+      } catch (error) {
+        console.error('Login error:', error.response?.data?.msg || error.message);
+        setApiError(error.response?.data?.msg || 'Login failed. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-blue-900 to-black bg-pattern">
-      <div className="w-full max-w-md p-8 space-y-8 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl shadow-xl">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-300">Log in to your coding sanctuary</p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <div>
-            <label htmlFor="email" className="sr-only">Email address</label>
-            <div className="relative">
-              <FaEnvelope className="absolute top-3 left-3 text-gray-400" />
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 pl-10 border border-gray-700 placeholder-gray-500 text-white bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email}</p>}
-          </div>
-          <div>
-            <label htmlFor="password" className="sr-only">Password</label>
-            <div className="relative">
-              <FaLock className="absolute top-3 left-3 text-gray-400" />
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 pl-10 border border-gray-700 placeholder-gray-500 text-white bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            {errors.password && <p className="mt-2 text-sm text-red-500">{errors.password}</p>}
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-            >
-              Log in
-            </button>
-          </div>
-        </form>
-
-        <div className="flex items-center justify-between">
-          <div className="text-sm">
-            <a href="#" className="font-medium text-blue-400 hover:text-blue-500">Forgot your password?</a>
-          </div>
-          <div className="text-sm">
-            {/* <a href="#" className="font-medium text-blue-400 hover:text-blue-500">Sign up</a> */}
-            <Link to="/signup" className="text-sm text-indigo-400 hover:text-indigo-500">Sign Up</Link>
-          </div>
-        </div>
+    <div className="min-h-screen relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-black overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-[500px] h-[500px] -top-48 -left-48 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div className="absolute w-[500px] h-[500px] -top-48 -right-48 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute w-[500px] h-[500px] bottom-48 left-48 bg-indigo-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
-      <footer className="mt-8 text-center">
-        <p className="text-gray-400 mb-4">Connect with us</p>
-        <div className="flex justify-center space-x-4">
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-            <FaGithub className="text-2xl" />
-          </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-            <FaLinkedin className="text-2xl" />
-          </a>
-          <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
-            <FaTwitter className="text-2xl" />
-          </a>
-        </div>
-      </footer>
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]"></div>
+
+      <div className="relative min-h-screen flex flex-col justify-center items-center p-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md"
+        >
+          {/* Logo and Title */}
+          <div className="text-center mb-8">
+            <div className="inline-block mb-4">
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75"></div>
+                <div className="relative px-6 py-3 bg-black rounded-lg leading-none">
+                  <span className="text-blue-200 text-sm font-medium">Welcome Back to USCL</span>
+                </div>
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 animate-gradient">
+              Sign In
+            </h1>
+            <p className="mt-2 text-gray-300">Access your coding sanctuary</p>
+          </div>
+
+          {/* Main Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/10 p-8"
+          >
+            {/* Social Login Buttons */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <button className="flex items-center justify-center px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white transition-all duration-300">
+                <FaGoogle className="mr-2" />
+                Google
+              </button>
+              <button className="flex items-center justify-center px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white transition-all duration-300">
+                <FaGithub className="mr-2" />
+                GitHub
+              </button>
+            </div>
+
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/10"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-transparent text-gray-400">or continue with</span>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <div className="relative">
+                  <FaEnvelope className="absolute top-3 left-3 text-gray-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                    placeholder="Email address"
+                  />
+                </div>
+                {errors.email && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-2 text-sm text-red-400"
+                  >
+                    {errors.email}
+                  </motion.p>
+                )}
+              </div>
+
+              <div>
+                <div className="relative">
+                  <FaLock className="absolute top-3 left-3 text-gray-400" />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                    placeholder="Password"
+                  />
+                </div>
+                {errors.password && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-2 text-sm text-red-400"
+                  >
+                    {errors.password}
+                  </motion.p>
+                )}
+              </div>
+
+              {apiError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+                >
+                  {apiError}
+                </motion.div>
+              )}
+
+              <div className="flex items-center justify-between text-sm">
+                <Link to="/forgot-password" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  Forgot password?
+                </Link>
+                <Link to="/signup" className="text-purple-400 hover:text-purple-300 transition-colors">
+                  Create account
+                </Link>
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                type="submit"
+                disabled={isLoading}
+                className={`w-full py-3 px-4 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 ${
+                  isLoading ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
+              >
+                <span>Sign In</span>
+                {isLoading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <FaArrowRight className="ml-2" />
+                )}
+              </motion.button>
+            </form>
+          </motion.div>
+
+          {/* Footer */}
+          <motion.footer 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-8 text-center"
+          >
+            <p className="text-gray-400 mb-4">Connect with us</p>
+            <div className="flex justify-center space-x-6">
+              {[
+                { icon: FaGithub, href: '#', color: 'hover:text-purple-400' },
+                { icon: FaLinkedin, href: '#', color: 'hover:text-blue-400' },
+                { icon: FaTwitter, href: '#', color: 'hover:text-blue-400' }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className={`text-gray-400 ${social.color} transition-colors duration-300`}
+                >
+                  <social.icon className="text-xl" />
+                </motion.a>
+              ))}
+            </div>
+            <p className="mt-8 text-gray-500 text-sm">
+              &copy; 2024 USCL. All rights reserved.
+            </p>
+          </motion.footer>
+        </motion.div>
+      </div>
     </div>
   );
 };

@@ -1,51 +1,8 @@
-// // CoursePage.js
-// import React from 'react';
 
-// const Cpp = () => {
-//   return (
-//     <div className="min-h-screen bg-black text-white">
-//       <div className="max-w-4xl mx-auto py-12 px-4">
-//         <header className="text-center mb-12">
-//           <h1 className="text-4xl font-bold text-red-500">
-//             C++ Programming Mastery: Data Structures & Algorithms
-//           </h1>
-//           <p className="text-xl mt-4">
-//             Unlock the Power of C++
-//           </p>
-//         </header>
-
-//         <section className="bg-blue-900 rounded-lg p-6">
-//           <h2 className="text-2xl font-semibold text-red-500 mb-4">
-//             Course Highlights:
-//           </h2>
-//           <ul className="list-disc list-inside text-lg space-y-2">
-//             <li><strong>In-Depth C++ Fundamentals:</strong> Build a solid understanding of C++ syntax, object-oriented programming, and advanced features.</li>
-//             <li><strong>Master Data Structures:</strong> Learn to implement and utilize arrays, linked lists, stacks, queues, and more.</li>
-//             <li><strong>Algorithmic Techniques:</strong> Gain expertise in sorting, searching, and dynamic programming to tackle complex problems efficiently.</li>
-//             <li><strong>Practical Problem-Solving:</strong> Engage with hands-on projects and real-world scenarios to solidify your knowledge and application skills.</li>
-//           </ul>
-//         </section>
-
-//         <footer className="text-center mt-12">
-//           <p className="text-xl font-semibold text-red-500">
-//             Enhance Your Coding Journey
-//           </p>
-//           <p className="mt-4">
-//             Elevate your programming prowess and prepare for advanced software development with our expertly crafted curriculum. Whether you're aiming to excel in coding interviews or develop high-performance applications, this course is your gateway to mastering C++ and DSA.
-//           </p>
-//           <button className="mt-6 bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600">
-//             Start Your Learning Adventure Today!
-//           </button>
-//         </footer>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Cpp;
 
 import React from "react";
 import { FaCode, FaDatabase, FaLightbulb, FaPuzzlePiece } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Cpp = () => {
   return (
@@ -94,12 +51,14 @@ const Cpp = () => {
           aiming to excel in coding interviews or develop high-performance
           applications, this course is your gateway to mastering C++ and DSA.
         </p>
+        <Link to="/courses/dsa-cpp">
         <button
           className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
           aria-label="Start Your Learning Adventure Today"
         >
           Start Your Learning Adventure Today!
         </button>
+        </Link>
       </footer>
     </div>
   );
