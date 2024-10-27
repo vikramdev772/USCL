@@ -1,16 +1,26 @@
-// NavItem.jsx
-import React from 'react';
-
-const NavItem = ({ icon: Icon, label, isActive, onClick, showLabel }) => (
-  <button
-    className={`flex items-center space-x-2 w-full p-2 rounded transition-colors duration-200 ${
-      isActive ? 'bg-slate-800 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-    }`}
-    onClick={onClick}
-  >
-    <Icon className="h-5 w-5" />
-    {showLabel && <span>{label}</span>}
-  </button>
-);
+const NavItem = ({ icon: Icon, label, description, isActive, onClick, showLabel }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full p-3 rounded-lg transition-all duration-200 ${
+        isActive
+          ? 'bg-blue-500/10 text-blue-400'
+          : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+      }`}
+    >
+      <div className="flex items-center">
+        <Icon size={16} />
+        {showLabel && (
+          <div className="ml-3 text-left">
+            <span className="block">{label}</span>
+            {description && (
+              <span className="text-xs text-gray-500">{description}</span>
+            )}
+          </div>
+        )}
+      </div>
+    </button>
+  );
+};
 
 export default NavItem;

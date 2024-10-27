@@ -1,113 +1,297 @@
-import React from "react";
-import { FaPlay, FaShoppingCart } from "react-icons/fa";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  FaPlay, 
+  FaShoppingCart, 
+  FaUserGraduate, 
+  FaCertificate,
+  FaLaptop,
+  FaCode,
+  FaBook,
+  FaNetworkWired,
+  FaClock,
+  FaUsers,
+  FaRocket,
+  FaCheckCircle
+} from "react-icons/fa";
 
 const NetworkingCourse = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const courseFeatures = [
+    {
+      icon: <FaLaptop />,
+      title: "Practical Labs",
+      description: "Hands-on experience with real networking scenarios"
+    },
+    {
+      icon: <FaUserGraduate />,
+      title: "Expert Instruction",
+      description: "Learn from industry professionals"
+    },
+    {
+      icon: <FaCertificate />,
+      title: "Certification",
+      description: "Industry-recognized networking certification"
+    },
+    {
+      icon: <FaBook />,
+      title: "Comprehensive Content",
+      description: "In-depth coverage of networking concepts"
+    }
+  ];
+
+  const moduleList = [
+    "Network Fundamentals",
+    "TCP/IP Protocols",
+    "Network Security",
+    "Routing & Switching",
+    "Cloud Networking",
+    "Network Troubleshooting",
+    "Network Design",
+    "Performance Optimization"
+  ];
+
   return (
-    <>
-      <div className="bg-black min-h-screen flex flex-col text-white">
-        <header className="text-center py-16 px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-400 mb-4">
-            Master Networking: From Fundamentals to Advanced
-          </h1>
-          <p className="text-xl md:text-2xl">
-            Enhance your networking skills with our expert-led course
-          </p>
-        </header>
+    <div className="min-h-screen bg-[#0A0F1C] text-white">
+      {/* Decorative Background */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-black to-blue-500/10" />
 
-        <main className="flex-grow container mx-auto px-6 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="relative aspect-video mb-8">
-              <div className="absolute inset-0 bg-cyan-500 opacity-20 rounded-lg shadow-2xl"></div>
-              <video
-                className="w-full h-full object-cover rounded-lg shadow-2xl"
-                poster="https://images.unsplash.com/photo-1506748686214e9df14b3c9e4f0a?auto=format&fit=crop&w=1920&q=80"
-                controls
-              >
-                <source src="demo-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <h1 className="text-4xl font-bold mb-4 text-cyan-400">
-              Become a Networking Expert with Our Comprehensive Course
+      <div className="relative">
+        {/* Hero Section */}
+        <section className="pt-20 pb-16 px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-7xl mx-auto text-center"
+          >
+            <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-semibold mb-6">
+              PROFESSIONAL CERTIFICATION COURSE
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 text-transparent bg-clip-text">
+              Master Network Engineering
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Dive into networking fundamentals, protocols, and advanced techniques with our expertly designed course.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
+              Comprehensive training in networking fundamentals, protocols, and advanced techniques
             </p>
-            <div className="flex justify-center space-x-4">
-              <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-700 rounded-full text-lg font-semibold hover:from-cyan-600 hover:to-cyan-800 transition duration-300 ease-in-out transform hover:scale-105 flex items-center">
-                <FaPlay className="mr-2" /> Watch Full Demo
-              </button>
-            </div>
-          </div>
 
-          {/* Payment Section */}
-          <div className="mt-20 max-w-2xl mx-auto">
-            <div className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden border border-cyan-500 transform hover:scale-105 transition duration-300 ease-in-out">
-              <div className="p-8">
-                <h2 className="text-3xl font-bold text-cyan-400 mb-4">
-                  Premium Networking Course Package
-                </h2>
-                <p className="text-5xl font-bold text-cyan-500 mb-6">₹6999</p>
-                <ul className="text-gray-300 mb-8">
-                  <li className="mb-2 flex items-center">
-                    <svg
-                      className="w-5 h-5 mr-2 text-cyan-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Lifetime access to course materials
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <svg
-                      className="w-5 h-5 mr-2 text-cyan-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Priority support
-                  </li>
-                  <li className="mb-2 flex items-center">
-                    <svg
-                      className="w-5 h-5 mr-2 text-cyan-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Priority access to new content
-                  </li>
-                </ul>
-                <button className="w-full py-4 bg-gradient-to-r from-cyan-600 to-cyan-800 rounded-lg text-xl font-bold hover:from-cyan-700 hover:to-cyan-900 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center">
-                  <FaShoppingCart className="mr-2" /> Proceed to Payment
+            {/* Course Stats */}
+            <div className="flex flex-wrap justify-center gap-6 mb-12">
+              {[
+                { icon: FaClock, text: "40+ Hours", label: "Course Duration" },
+                { icon: FaLaptop, text: "25+ Labs", label: "Hands-on Practice" },
+                { icon: FaUsers, text: "24/7", label: "Expert Support" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + index * 0.1 }}
+                  className="flex items-center gap-3 bg-cyan-900/20 px-6 py-3 rounded-full border border-cyan-500/20"
+                >
+                  <div className="p-2 rounded-full bg-cyan-500/10">
+                    <stat.icon className="text-cyan-400 w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-white">{stat.text}</div>
+                    <div className="text-xs text-cyan-400">{stat.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Video Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-4xl mx-auto mb-20"
+          >
+            <div className="relative rounded-2xl overflow-hidden border border-cyan-500/20">
+              <div className="aspect-video relative group">
+                <video
+                  poster="https://images.unsplash.com/photo-1506748686214e9df14b3c9e4f0a?auto=format&fit=crop&w=1920&q=80"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="demo-video.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <button className="absolute inset-0 flex items-center justify-center group">
+                  <div className="w-20 h-20 bg-cyan-500/90 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                    <FaPlay className="w-8 h-8 text-white ml-2" />
+                  </div>
                 </button>
               </div>
             </div>
+          </motion.div>
+        </section>
+
+        {/* Course Modules */}
+        <section className="py-20 relative">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {/* Module List */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <h2 className="text-3xl font-bold mb-8">Course Modules</h2>
+                <div className="space-y-4">
+                  {moduleList.map((module, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-center space-x-4 bg-cyan-900/20 p-4 rounded-xl border border-cyan-500/20"
+                    >
+                      <div className="w-8 h-8 bg-cyan-500/10 rounded-full flex items-center justify-center text-cyan-400">
+                        {index + 1}
+                      </div>
+                      <span className="text-gray-300">{module}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Course Features */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <h2 className="text-3xl font-bold mb-8">What You'll Get</h2>
+                <div className="grid gap-6">
+                  {courseFeatures.map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-cyan-900/20 p-6 rounded-xl border border-cyan-500/20"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center text-cyan-400">
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold">{feature.title}</h3>
+                          <p className="text-gray-400">{feature.description}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </main>
+        </section>
+
+        {/* Pricing Section */}
+        <section className="py-20 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent">
+          <div className="max-w-4xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 rounded-2xl overflow-hidden border border-cyan-500/20 p-8"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <h2 className="text-2xl font-bold text-cyan-400">Premium Access</h2>
+                  <p className="text-gray-400">Complete networking course bundle</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-400 line-through">₹9999</p>
+                  <p className="text-4xl font-bold text-white">₹6999</p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                {[
+                  "Lifetime course access",
+                  "Certification preparation",
+                  "24/7 expert support",
+                  "Hands-on projects",
+                  "Industry case studies",
+                  "Premium resources"
+                ].map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center space-x-3 text-gray-300"
+                  >
+                    <FaCheckCircle className="text-cyan-400 flex-shrink-0" />
+                    <span>{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setShowModal(true)}
+                className="w-full py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-xl text-xl font-semibold hover:from-cyan-600 hover:to-cyan-700 transition-all flex items-center justify-center gap-3"
+              >
+                <FaRocket />
+                Enroll Now
+              </motion.button>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Footer */}
-        <footer className="py-6 bg-gradient-to-b from-gray-900 to-black">
-          <div className="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Networking Course. All rights reserved.</p>
+        <footer className="py-8 border-t border-gray-800">
+          <div className="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 USCL Networking Course. All rights reserved.</p>
           </div>
         </footer>
       </div>
-    </>
+
+      {/* Payment Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-gray-900/90 rounded-xl border border-cyan-500/20 p-6 w-full max-w-md"
+            >
+              {/* Add your payment form here */}
+              <h3 className="text-2xl font-bold mb-4">Complete Your Purchase</h3>
+              <p className="text-gray-400 mb-6">You will be redirected to our secure payment gateway.</p>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 py-2 bg-gray-800 rounded-lg hover:bg-gray-700"
+                >
+                  Cancel
+                </button>
+                <button className="flex-1 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-700">
+                  Pay Now
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
