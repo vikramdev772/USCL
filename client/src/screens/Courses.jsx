@@ -51,79 +51,70 @@ const courseData = [
   },
 ];
 
-const CourseCard = ({ course, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-900 to-black border border-gray-800 hover:border-gray-700 transition-all duration-300"
-  >
-    <div className="aspect-w-16 aspect-h-9 overflow-hidden">
-      <img
-        src={course.image}
-        alt={course.title}
-        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
-    </div>
-    
-    <div className="relative p-6">
-      <h3 className={`text-2xl font-bold text-${course.color}-400 mb-3`}>
-        {course.title}
-      </h3>
-      <p className="text-gray-300 mb-6 line-clamp-3">
-        {course.description}
-      </p>
-      <Link
-        to={course.link}
-        className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-${course.color}-500/10 border border-${course.color}-500/20 text-${course.color}-400 hover:bg-${course.color}-500/20 transition-all duration-300`}
-      >
-        Explore Course
-        <ArrowRight className="w-4 h-4" />
-      </Link>
-    </div>
+const CourseCard = ({ course, index }) => {
+  const buttonClasses = {
+    blue: "bg-blue-500/10 hover:bg-blue-500/20 border-blue-500/20 text-blue-400",
+    green: "bg-green-500/10 hover:bg-green-500/20 border-green-500/20 text-green-400",
+    red: "bg-red-500/10 hover:bg-red-500/20 border-red-500/20 text-red-400",
+    cyan: "bg-cyan-500/10 hover:bg-cyan-500/20 border-cyan-500/20 text-cyan-400",
+    violet: "bg-violet-500/10 hover:bg-violet-500/20 border-violet-500/20 text-violet-400",
+    sky: "bg-sky-500/10 hover:bg-sky-500/20 border-sky-500/20 text-sky-400",
+  };
 
-    {/* Decorative gradient */}
-    <div className={`absolute inset-0 bg-gradient-to-br from-${course.color}-500/0 via-transparent to-${course.color}-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-  </motion.div>
-);
+  const gradientClasses = {
+    blue: "from-blue-500/0 via-transparent to-blue-500/10",
+    green: "from-green-500/0 via-transparent to-green-500/10",
+    red: "from-red-500/0 via-transparent to-red-500/10",
+    cyan: "from-cyan-500/0 via-transparent to-cyan-500/10",
+    violet: "from-violet-500/0 via-transparent to-violet-500/10",
+    sky: "from-sky-500/0 via-transparent to-sky-500/10",
+  };
 
-const Courses = () => {
   return (
-    <>
-      <section className="relative min-h-screen">
-        {/* Background */}
-        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-[#0c1322] to-black -z-10" />
-        
-        {/* Decorative grid */}
-        <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] -z-10" />
-
-        {/* Content */}
-        <div className="container mx-auto px-4 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-900 to-black border border-gray-800 hover:border-gray-700 transition-all duration-300"
+    >
+      <div className="aspect-w-16 aspect-h-9 overflow-hidden">
+        <img
+          src={course.image}
+          alt={course.title}
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
+      </div>
+      
+      <div className="relative p-6">
+        <h3 className={`text-2xl font-bold text-${course.color}-400 mb-3`}>
+          {course.title}
+        </h3>
+        <p className="text-gray-300 mb-6 line-clamp-3">
+          {course.description}
+        </p>
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Link
+            to={course.link}
+            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg border cursor-pointer ${buttonClasses[course.color]} transition-all duration-300 hover:shadow-lg hover:shadow-${course.color}-500/10`}
           >
-            <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-6">
-              Explore Our Courses
-            </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Discover comprehensive learning paths designed to take you from beginner to expert in your chosen field.
-            </p>
-          </motion.div>
+            Explore Course
+            <motion.div
+              initial={{ x: 0 }}
+              whileHover={{ x: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowRight className="w-4 h-4" />
+            </motion.div>
+          </Link>
+        </motion.div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courseData.map((course, index) => (
-              <CourseCard key={course.title} course={course} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-      <Footer />
-    </>
+      {/* Decorative gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${gradientClasses[course.color]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+    </motion.div>
   );
 };
-
-export default Courses;

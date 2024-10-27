@@ -12,7 +12,7 @@ import Cybersecurity from "../screens/Cybersecurity";
 import Networking from "../screens/Networking";
 import Webdevlopment from "../screens/Webdevlopment";
 import Linux from "../screens/Linux";
-import Java from "../screens/Java";
+import Java from "../screens/home/Java";
 import Cpp from "../screens/Cpp";
 import Javacourse from "../screens/courses/Javacourse";
 import Linuxcourse from "../screens/courses/Linuxcourse";
