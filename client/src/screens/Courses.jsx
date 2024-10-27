@@ -6,6 +6,46 @@ import Networking from "../images/Networking.jpg";
 import Webdev from "../images/webdev.jpg";
 import Footer from "../components/Footer";
 
+// Color configuration object
+const colorConfig = {
+  blue: {
+    bg: "bg-blue-500/10",
+    text: "text-blue-400",
+    border: "border-blue-500/20",
+    hover: "hover:bg-blue-500/20",
+  },
+  green: {
+    bg: "bg-green-500/10",
+    text: "text-green-400",
+    border: "border-green-500/20",
+    hover: "hover:bg-green-500/20",
+  },
+  red: {
+    bg: "bg-red-500/10",
+    text: "text-red-400",
+    border: "border-red-500/20",
+    hover: "hover:bg-red-500/20",
+  },
+  cyan: {
+    bg: "bg-cyan-500/10",
+    text: "text-cyan-400",
+    border: "border-cyan-500/20",
+    hover: "hover:bg-cyan-500/20",
+  },
+  violet: {
+    bg: "bg-violet-500/10",
+    text: "text-violet-400",
+    border: "border-violet-500/20",
+    hover: "hover:bg-violet-500/20",
+  },
+  sky: {
+    bg: "bg-sky-500/10",
+    text: "text-sky-400",
+    border: "border-sky-500/20",
+    hover: "hover:bg-sky-500/20",
+  },
+};
+
 const courseData = [
   {
     title: "Java Programming",
@@ -51,59 +91,112 @@ const courseData = [
   },
 ];
 
-const CourseCard = ({ course, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-900 to-black border border-gray-800 hover:border-gray-700 transition-all duration-300"
-  >
-    <div className="aspect-w-16 aspect-h-9 overflow-hidden">
-      <img
-        src={course.image}
-        alt={course.title}
-        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
-    </div>
-    
-    <div className="relative p-6">
-      <h3 className={`text-2xl font-bold text-${course.color}-400 mb-3`}>
-        {course.title}
-      </h3>
-      <p className="text-gray-300 mb-6 line-clamp-3">
-        {course.description}
-      </p>
-      <Link
-        to={course.link}
-        className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-${course.color}-500/10 border border-${course.color}-500/20 text-${course.color}-400 hover:bg-${course.color}-500/20 transition-all duration-300 `}
-      >
-        Explore Course
-        <ArrowRight className="w-4 h-4" />
-      </Link>
-    </div>
+const CourseCard = ({ course, index }) => {
+  const colors = colorConfig[course.color];
 
-    {/* Decorative gradient */}
-    <div className={`absolute inset-0 bg-gradient-to-br from-${course.color}-500/0 via-transparent to-${course.color}-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-  </motion.div>
-);
+  const cardAnimationProps = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: index * 0.1 },
+  };
+
+  return (
+    <motion.div
+      {...cardAnimationProps}
+      className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-900 to-black border border-gray-800 hover:border-gray-700 transition-all duration-300"
+    >
+      {/* Image Container */}
+      <div className="aspect-w-16 aspect-h-9 overflow-hidden">
+        <img
+          src={course.image}
+          alt={course.title}
+          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
+      </div>
+      
+      {/* Content Container */}
+      <div className="relative p-6">
+        <h3 className={`text-2xl font-bold ${colors.text} mb-3`}>
+          {course.title}
+        </h3>
+        <p className="text-gray-300 mb-6 line-clamp-3">
+          {course.description}
+        </p>
+
+        {/* Explore Course Button */}
+        <Link
+          to={course.link}
+          className={`
+            inline-flex items-center gap-2 px-6 py-3 
+            rounded-lg
+            ${colors.border}
+            border
+            ${colors.text}
+            ${colors.bg}
+            relative 
+            cursor-pointer
+            overflow-hidden
+            group/button
+            transition-all duration-300
+          `}
+        >
+          <span className="relative z-10 flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-1">
+            Explore Course
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-1" />
+          </span>
+          {/* Button Hover Effect */}
+          <div 
+            className={`
+              absolute inset-0 
+              ${colors.hover}
+              opacity-0
+              group-hover/button:opacity-100
+              transform transition-all duration-300 
+              -skew-x-12 
+              -translate-x-full
+              group-hover/button:translate-x-0
+            `}
+          />
+        </Link>
+      </div>
+
+      {/* Card Hover Gradient Effect */}
+      <div 
+        className={`
+          absolute inset-0 
+          bg-gradient-to-br 
+          from-transparent 
+          via-transparent 
+          to-${course.color}-500/10
+          opacity-0 
+          group-hover:opacity-100 
+          transition-opacity duration-300
+        `}
+      />
+    </motion.div>
+  );
+};
 
 const Courses = () => {
+  const headerAnimationProps = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 },
+  };
+
   return (
     <>
       <section className="relative min-h-screen">
-        {/* Background */}
+        {/* Background Elements */}
         <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-[#0c1322] to-black -z-10" />
-        
-        {/* Decorative grid */}
         <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] -z-10" />
 
         {/* Content */}
         <div className="container mx-auto px-4 py-24">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            {...headerAnimationProps}
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-6">
