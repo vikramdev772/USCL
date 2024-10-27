@@ -1,0 +1,8 @@
+<!-- public/grid.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <path d="M1 0h98v1H1z" fill="#ffffff10"/>
+  <path d="M0 1h1v98H0z" fill="#ffffff10"/>
+</svg>
+
+
+
