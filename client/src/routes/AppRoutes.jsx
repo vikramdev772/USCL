@@ -2,8 +2,8 @@
 import { Route, Routes } from "react-router-dom";
 import Landing from "../components/Landing";
 import Home from "../components/Home";
-import LoginPage from "../pages/LoginPage";
-import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/auth/LoginPage";
+import SignupPage from "../pages/auth/SignupPage";
 import UserProfile from "../components/UserProfile";
 import Courses from "../screens/Courses";
 import About from "../pages/About";
@@ -21,6 +21,7 @@ import NetworkingCourse from "../screens/courses/NetworkingCourse";
 import DataScienceCourse from "../screens/courses/DataScienceCourse";
 import Webcourse from "../screens/courses/Webcourse";
 import Sidebar from "../utils/Sidebar";
+import Resources from "../pages/Resources";
 
 const AppRoutes = () => {
   return (
@@ -46,6 +47,7 @@ const AppRoutes = () => {
       <Route path="/courses/ds" element={<DataScienceCourse />} />
       <Route path="/courses/web2.0" element={<Webcourse />} />
       <Route path="/main" element={<Sidebar />} />
+      <Route path="/resources" element={<Resources />} />
     </Routes>
   );
 };

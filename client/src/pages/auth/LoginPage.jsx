@@ -11,7 +11,7 @@ import {
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import authUrl from '../api/authURL';
+import authUrl from '../../api/authURL';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');

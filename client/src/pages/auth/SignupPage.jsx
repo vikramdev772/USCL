@@ -13,7 +13,7 @@ import {
   FaArrowRight
 } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import authUrl from '../api/authURL';
+import authUrl from '../../api/authURL';
 
 // Optimized input field with useCallback and better mobile handling
 const InputField = React.memo(({ icon: Icon, name, value, onChange, placeholder, type, error }) => (
