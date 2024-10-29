@@ -15,7 +15,7 @@ import {
   FaArrowRight
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Fs from "../images/FS.png";
+import Fs from "../../images/FS.png";
 
 const WebDevelopment = () => {
   const features = [
