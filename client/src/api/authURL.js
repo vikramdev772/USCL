@@ -1,2 +1,2 @@
-const authUrl = 'http://localhost:5000/auth';
+const authUrl = 'https://uscl-auth.onrender.com/auth';
 export default authUrl;
