@@ -22,6 +22,9 @@ import DataScienceCourse from "../screens/courses/DataScienceCourse";
 import Webcourse from "../screens/courses/Webcourse";
 import Sidebar from "../utils/Sidebar";
 import Resources from "../pages/Resources";
+import VerifyOtpPage from "../pages/secure/VerifyOtpPage";
+import ForgotPassword from "../pages/secure/ForgotPassword";
+import ResetPassword from "../pages/secure/ResetPassword";
 
 const AppRoutes = () => {
   return (
@@ -48,6 +51,10 @@ const AppRoutes = () => {
       <Route path="/courses/web2.0" element={<Webcourse />} />
       <Route path="/main" element={<Sidebar />} />
       <Route path="/resources" element={<Resources />} />
+      <Route path="/verify-otp" element={<VerifyOtpPage />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword/>} />
+     
     </Routes>
   );
 };
