@@ -1,5 +1,3 @@
-// src/components/Sidebar.jsx
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -15,9 +13,10 @@ import {
   FaSignOutAlt,
   FaGraduationCap
 } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom'; // For navigation after logout
-import axios from 'axios'; // For API calls
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
+// Import components
 import NavItem from './NavItem';
 import UserProfile from './UserProfile';
 import ContentSection from './ContentSection';
@@ -27,19 +26,45 @@ import Profile from './Profile';
 import Assignments from './Assignments';
 import Playground from '../code/Playground';
 
-// Assuming authUrl is defined to point to your backend API
-import authUrl from '../api/authURL'; // Adjust the path as necessary
+// Import auth URL
+import authUrl from '../api/authURL';
+
+// Floating particles background component
+const FloatingParticles = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(20)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute w-2 h-2 bg-white/5 rounded-full"
+        initial={{
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+        }}
+        animate={{
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          scale: [1, 1.5, 1],
+          opacity: [0.1, 0.3, 0.1],
+        }}
+        transition={{
+          duration: Math.random() * 10 + 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    ))}
+  </div>
+);
 
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // Initialize state with a default value
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedSection, setSelectedSection] = useState('dashboard');
   const [showNotifications, setShowNotifications] = useState(false);
-  
-  const [userData, setUserData] = useState(null); // Initialize as null
+  const [userData, setUserData] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [userError, setUserError] = useState('');
-
-  const navigate = useNavigate(); // For redirecting after logout
+  const navigate = useNavigate();
 
   const navItems = [
     { 
@@ -77,8 +102,7 @@ const Sidebar = () => {
   // Function to fetch user data
   const fetchUserData = async () => {
     try {
-      // Assuming you have a GET /auth/user endpoint that returns user data
-      const token = localStorage.getItem('token'); // Or retrieve from your auth state
+      const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No authentication token found');
       }
@@ -89,13 +113,11 @@ const Sidebar = () => {
         }
       });
 
-      setUserData(response.data); // Adjust based on your API response structure
+      setUserData(response.data);
       setLoadingUser(false);
     } catch (error) {
       console.error('Error fetching user data:', error);
-      setUserError(
-        error.response?.data?.message || 'Failed to fetch user data.'
-      );
+      setUserError(error.response?.data?.message || 'Failed to fetch user data.');
       setLoadingUser(false);
     }
   };
@@ -106,28 +128,19 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('token'); // Or retrieve from your auth state
+      const token = localStorage.getItem('token');
       if (token) {
-        // Optionally, call a logout endpoint on your backend
         await axios.post(`${authUrl}/auth/logout`, {}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
       }
-
-      // Clear authentication tokens or any auth-related state
       localStorage.removeItem('token');
-      // If using context or other state management, reset it here
-
-      // Redirect to login page
       navigate('/login');
     } catch (error) {
       console.error('Logout error:', error);
-      // Optionally, display an error message to the user
-      alert(
-        error.response?.data?.message || 'Failed to logout. Please try again.'
-      );
+      alert(error.response?.data?.message || 'Failed to logout. Please try again.');
     }
   };
 
@@ -146,45 +159,61 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#0A0F1C]">
+    <div className="min-h-screen flex bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-blue-900/20 to-black">
+      <FloatingParticles />
+      
       {/* Sidebar */}
       <motion.div
         initial={false}
-        animate={{ width: isSidebarOpen ? '280px' : '80px' }}
+        animate={{ width: sidebarOpen ? '280px' : '80px' }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        className="bg-gray-900/50 backdrop-blur-xl border-r border-gray-800/50 relative"
+        className="relative z-10"
       >
-        <div className="flex flex-col h-full p-4">
+        {/* Glassmorphism effect */}
+        <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-xl border-r border-white/10" />
+        
+        <div className="relative flex flex-col h-full p-4">
           {/* Logo and Toggle */}
-          <div className="flex items-center justify-between mb-6"> {/* Increased margin-bottom */}
-            {isSidebarOpen && (
+          <div className="flex items-center justify-between mb-8">
+            {sidebarOpen && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="flex items-center space-x-2"
               >
-                <FaGraduationCap className="text-blue-400 text-2xl" />
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-75 animate-pulse" />
+                  <div className="relative">
+                    <FaGraduationCap className="text-blue-400 text-2xl" />
+                  </div>
+                </div>
                 <span className="text-white font-semibold text-lg">USCL</span>
               </motion.div>
             )}
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 text-gray-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all duration-300"
             >
-              {isSidebarOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
-            </button>
+              {sidebarOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
+            </motion.button>
           </div>
 
           {/* User Profile */}
-          <div className="mb-6"> {/* Increased margin-bottom for more gap */}
-            <UserProfile 
-              user={userData} 
-              showDetails={isSidebarOpen} 
-              loading={loadingUser} 
-              error={userError} 
-            />
+          <div className="mb-8">
+            <motion.div
+              className="p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-white/10"
+              whileHover={{ scale: 1.02 }}
+            >
+              <UserProfile 
+                user={userData} 
+                showDetails={sidebarOpen} 
+                loading={loadingUser} 
+                error={userError}
+              />
+            </motion.div>
           </div>
 
           {/* Navigation */}
@@ -202,62 +231,61 @@ const Sidebar = () => {
                   description={item.description}
                   isActive={selectedSection === item.id}
                   onClick={() => setSelectedSection(item.id)}
-                  showLabel={isSidebarOpen}
+                  showLabel={sidebarOpen}
                 />
               </motion.div>
             ))}
           </nav>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-800/50 pt-4 space-y-2">
-            {/* Notifications */}
+          <div className="border-t border-white/10 pt-4 space-y-2">
             <motion.button
-              whileHover={{ x: 4 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setShowNotifications(!showNotifications)}
-              className={`flex items-center w-full p-3 rounded-lg transition-colors ${
-                showNotifications 
-                  ? 'bg-blue-500/10 text-blue-400' 
-                  : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
+              className={`w-full relative group ${
+                showNotifications ? 'bg-blue-500/20 text-blue-400' : 'text-gray-400 hover:text-white'
               }`}
-              aria-label="Toggle Notifications"
             >
-              <FaBell size={16} />
-              {isSidebarOpen && (
-                <span className="ml-3">Notifications</span>
-              )}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative flex items-center p-3 rounded-xl transition-colors duration-300">
+                <FaBell size={16} />
+                {sidebarOpen && <span className="ml-3">Notifications</span>}
+              </div>
             </motion.button>
 
-            {/* Settings */}
             <motion.button
-              whileHover={{ x: 4 }}
-              className="flex items-center w-full p-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-colors"
-              aria-label="Settings"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full relative group text-gray-400 hover:text-white"
             >
-              <FaCog size={16} />
-              {isSidebarOpen && (
-                <span className="ml-3">Settings</span>
-              )}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative flex items-center p-3 rounded-xl transition-colors duration-300">
+                <FaCog size={16} />
+                {sidebarOpen && <span className="ml-3">Settings</span>}
+              </div>
             </motion.button>
 
-            {/* Logout */}
             <motion.button
-              whileHover={{ x: 4 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={handleLogout}
-              className="flex items-center w-full p-3 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
-              aria-label="Logout"
+              className="w-full relative group text-gray-400 hover:text-red-400"
             >
-              <FaSignOutAlt size={16} />
-              {isSidebarOpen && (
-                <span className="ml-3">Logout</span>
-              )}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-600/20 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative flex items-center p-3 rounded-xl transition-colors duration-300">
+                <FaSignOutAlt size={16} />
+                {sidebarOpen && <span className="ml-3">Logout</span>}
+              </div>
             </motion.button>
           </div>
         </div>
       </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1">
-        <div className="p-4 md:p-6 lg:p-8"> {/* Adjusted padding for responsiveness */}
+      <div className="flex-1 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black opacity-50" />
+        <div className="relative z-10 p-4 md:p-6 lg:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -277,37 +305,32 @@ const Sidebar = () => {
       <AnimatePresence>
         {showNotifications && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.3 }}
+              animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
               onClick={() => setShowNotifications(false)}
-              aria-hidden="true"
             />
-            {/* Notifications Panel */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="fixed right-0 top-0 h-full w-80 bg-gray-900/95 backdrop-blur-xl border-l border-gray-800/50 p-6 z-50"
-              aria-label="Notifications Panel"
+              className="fixed right-0 top-0 h-full w-80 bg-gray-900/95 backdrop-blur-xl border-l border-white/10 p-6 z-50"
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-white">Notifications</h2>
-                <button 
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   onClick={() => setShowNotifications(false)}
-                  className="p-2 rounded-lg hover:bg-gray-800/50 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  aria-label="Close Notifications"
+                  className="p-2 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-all duration-300"
                 >
                   <FaTimes size={16} />
-                </button>
+                </motion.button>
               </div>
-              {/* Notifications Content */}
               <div className="text-white">
-                <p>No new notifications.</p>
-                {/* Replace with actual notifications */}
+                <p>No new notifications</p>
               </div>
             </motion.div>
           </>
