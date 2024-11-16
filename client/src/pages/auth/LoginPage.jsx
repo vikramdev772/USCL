@@ -12,27 +12,44 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import authUrl from '../../api/authURL';
 
-// Enhanced Input Field Component
+const GlassCard = ({ children, className = "" }) => (
+  <div className={`relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl ${className}`}>
+    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-50 rounded-2xl" />
+    <div className="relative">{children}</div>
+  </div>
+);
+
+const IconWrapper = ({ children, className = "" }) => (
+  <div className={`relative group ${className}`}>
+    <div className="absolute inset-0 bg-blue-400/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-300" />
+    <div className="relative bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-white/5 rounded-xl p-3">
+      {children}
+    </div>
+  </div>
+);
+
 const InputField = ({ icon: Icon, type, value, onChange, placeholder, error }) => (
   <div className="space-y-1.5">
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur"></div>
-      <div className="relative">
-        <Icon className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400 text-base sm:text-lg group-hover:text-blue-400 transition-colors duration-300" />
-        <input
-          type={type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="w-full px-4 py-3 sm:py-3.5 pl-10 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white transition-all duration-300 placeholder-gray-400 text-sm sm:text-base hover:bg-white/10"
-        />
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-lg" />
+      <GlassCard className="relative">
+        <div className="flex items-center">
+          <Icon className="absolute left-3 text-gray-400 text-lg group-hover:text-blue-400 transition-colors duration-300" />
+          <input
+            type={type}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            className="w-full px-4 py-3.5 pl-10 bg-transparent border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-white placeholder-gray-400/75 text-base"
+          />
+        </div>
+      </GlassCard>
     </div>
     {error && (
       <motion.p
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-xs text-red-400 pl-2"
+        className="text-xs text-red-400/90 pl-2"
       >
         {error}
       </motion.p>
@@ -40,13 +57,12 @@ const InputField = ({ icon: Icon, type, value, onChange, placeholder, error }) =
   </div>
 );
 
-// Floating particles background component
 const FloatingParticles = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+  <div className="fixed inset-0 overflow-hidden pointer-events-none">
     {[...Array(20)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute w-2 h-2 bg-white/10 rounded-full"
+        className="absolute w-2 h-2 bg-white/5 rounded-full"
         initial={{
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
@@ -55,7 +71,7 @@ const FloatingParticles = () => (
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
           scale: [1, 1.5, 1],
-          opacity: [0.2, 0.5, 0.2],
+          opacity: [0.1, 0.3, 0.1],
         }}
         transition={{
           duration: Math.random() * 10 + 20,
@@ -120,12 +136,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-black overflow-hidden">
-      {/* Animated background */}
-      <FloatingParticles />
+    <div className="min-h-screen relative bg-gray-950 text-white">
+      {/* Enhanced Background Elements */}
+      <div className="fixed inset-0">
+        <div className="absolute w-[800px] h-[800px] -top-96 -left-96 bg-blue-500/20 rounded-full mix-blend-normal filter blur-3xl animate-blob"></div>
+        <div className="absolute w-[800px] h-[800px] -top-96 -right-96 bg-purple-500/20 rounded-full mix-blend-normal filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute w-[600px] h-[600px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500/10 rounded-full mix-blend-normal filter blur-3xl animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-repeat opacity-20" />
+      <div className="fixed inset-0 backdrop-blur-[120px]" />
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+      <FloatingParticles />
 
       <div className="relative min-h-screen flex flex-col justify-center items-center px-4 py-12 sm:px-6 lg:px-8">
         <motion.div
@@ -135,24 +157,17 @@ const LoginPage = () => {
           className="w-full max-w-md space-y-8"
         >
           {/* Enhanced Header */}
-          <div className="text-center relative">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", duration: 0.8 }}
-              className="inline-block mb-6"
-            >
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 animate-pulse"></div>
-                <div className="relative px-6 sm:px-8 py-3 sm:py-4 bg-black rounded-lg">
-                  <span className="text-blue-200 text-sm sm:text-base font-medium">Welcome Back to USCL</span>
-                </div>
-              </div>
-            </motion.div>
-            <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-3">
+          <div className="text-center">
+            <GlassCard className="inline-block px-6 py-2 mb-6">
+              <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold">
+                Welcome Back to USCL
+              </span>
+            </GlassCard>
+            
+            <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-3">
               Sign In
             </h1>
-            <p className="text-gray-400 text-sm sm:text-base">
+            <p className="text-gray-400/90 text-base">
               Access your coding sanctuary
             </p>
           </div>
@@ -162,30 +177,10 @@ const LoginPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative"
           >
-            {/* Glowing border effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-md opacity-25"></div>
-            
-            <div className="relative backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl border border-white/10 p-8 sm:p-10">
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-purple-500/10 to-blue-500/10 rounded-full blur-2xl"></div>
-
-              {/* Decorative Divider */}
-              <div className="relative mb-8">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-white/10"></div>
-                </div>
-                <div className="relative flex justify-center">
-                  <div className="px-4 bg-gradient-to-r from-transparent via-white/10 to-transparent">
-                    <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                  </div>
-                </div>
-              </div>
-
+            <GlassCard className="p-8 sm:p-10">
               {/* Login Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <InputField
                   icon={FaEnvelope}
                   type="email"
@@ -205,59 +200,53 @@ const LoginPage = () => {
                 />
 
                 {apiError && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
-                  >
-                    {apiError}
-                  </motion.div>
+                  <GlassCard className="p-4 border-red-500/20">
+                    <p className="text-red-400/90 text-sm">{apiError}</p>
+                  </GlassCard>
                 )}
 
                 <div className="flex items-center justify-between text-sm">
                   <Link
                     to="/forgot-password"
-                    className="text-blue-400 hover:text-blue-300 transition-colors duration-300 hover:underline"
+                    className="text-blue-400/90 hover:text-blue-400 transition-colors duration-300 hover:underline"
                   >
                     Forgot password?
                   </Link>
                   <Link
                     to="/signup"
-                    className="text-purple-400 hover:text-purple-300 transition-colors duration-300 hover:underline"
+                    className="text-purple-400/90 hover:text-purple-400 transition-colors duration-300 hover:underline"
                   >
                     Create account
                   </Link>
                 </div>
 
                 <motion.button
-                  whileHover={{ scale: 1.01, boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)" }}
+                  whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full py-3 sm:py-4 px-4 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 text-sm sm:text-base font-medium ${
-                    isLoading ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
+                  className="w-full py-4 px-4 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600/90 to-purple-600/90 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl transition-all duration-300 text-base font-medium backdrop-blur-xl border border-white/5 disabled:opacity-75 disabled:cursor-not-allowed"
                 >
                   <span>Sign In</span>
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
-                    <FaArrowRight className="text-sm sm:text-base" />
+                    <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   )}
                 </motion.button>
               </form>
-            </div>
+            </GlassCard>
           </motion.div>
 
           {/* Enhanced Footer */}
-          <motion.footer
+          {/* <motion.footer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-12 text-center"
+            className="text-center"
           >
-            <p className="text-gray-400 text-sm sm:text-base mb-4">Connect with us</p>
-            <div className="flex justify-center space-x-8">
+            <p className="text-gray-400/90 text-base mb-4">Connect with us</p>
+            <div className="flex justify-center space-x-6">
               {[
                 { icon: FaGithub, href: '#', color: 'hover:text-purple-400' },
                 { icon: FaLinkedin, href: '#', color: 'hover:text-blue-400' },
@@ -266,18 +255,18 @@ const LoginPage = () => {
                 <motion.a
                   key={index}
                   href={social.href}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`text-gray-400 ${social.color} transition-colors duration-300`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
                 >
-                  <social.icon className="text-xl sm:text-2xl" />
+                  <IconWrapper>
+                    <social.icon className={`text-xl text-gray-400 ${social.color}`} />
+                  </IconWrapper>
                 </motion.a>
               ))}
             </div>
-            <p className="mt-8 text-gray-500 text-xs sm:text-sm">
+            <p className="mt-8 text-gray-500/90 text-sm">
               &copy; 2024 USCL. All rights reserved.
             </p>
-          </motion.footer>
+          </motion.footer> */}
         </motion.div>
       </div>
     </div>

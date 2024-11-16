@@ -140,7 +140,7 @@ const SignupPage = () => {
     <div className="min-h-screen relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-black overflow-hidden">
       {/* Animated background */}
       <FloatingParticles />
-      
+
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
 
@@ -161,9 +161,9 @@ const SignupPage = () => {
             >
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-75 animate-pulse"></div>
-                <div className="relative px-6 sm:px-8 py-3 sm:py-4 bg-black rounded-lg">
-                  <span className="text-blue-200 text-sm sm:text-base font-medium">Join USCL Community</span>
-                </div>
+                {/* <div className="relative px-6 sm:px-8 py-3 sm:py-4 bg-black rounded-lg">
+                  {/* <span className="text-blue-200 text-sm sm:text-base font-medium">Join USCL Community</span> */}
+                {/* </div> */}
               </div>
             </motion.div>
             <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 mb-3">
@@ -181,7 +181,7 @@ const SignupPage = () => {
           >
             {/* Glowing border effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-md opacity-25"></div>
-            
+
             <div className="relative backdrop-blur-xl bg-black/40 rounded-2xl shadow-2xl border border-white/10 p-8 sm:p-10">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
@@ -218,11 +218,10 @@ const SignupPage = () => {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-lg ${
-                      apiMessage.includes('successful') 
-                        ? 'bg-green-500/10 border border-green-500/20 text-green-400' 
+                    className={`p-4 rounded-lg ${apiMessage.includes('successful')
+                        ? 'bg-green-500/10 border border-green-500/20 text-green-400'
                         : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                    } text-sm`}
+                      } text-sm`}
                   >
                     {apiMessage}
                   </motion.div>
@@ -233,9 +232,8 @@ const SignupPage = () => {
                   whileTap={{ scale: 0.99 }}
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full py-3 sm:py-4 px-4 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 text-sm sm:text-base font-medium ${
-                    isLoading ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
+                  className={`w-full py-3 sm:py-4 px-4 flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 text-sm sm:text-base font-medium ${isLoading ? 'opacity-75 cursor-not-allowed' : ''
+                    }`}
                 >
                   <span>Create Account</span>
                   {isLoading ? (
@@ -259,7 +257,7 @@ const SignupPage = () => {
           </motion.div>
 
           {/* Enhanced Footer */}
-          <motion.footer
+          {/* <motion.footer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -286,7 +284,7 @@ const SignupPage = () => {
             <p className="mt-8 text-gray-500 text-xs sm:text-sm">
               &copy; 2024 USCL. All rights reserved.
             </p>
-          </motion.footer>
+          </motion.footer> */}
         </motion.div>
       </div>
     </div>

@@ -14,6 +14,22 @@ import {
 } from 'react-icons/fa';
 import Footer from '../components/Footer';
 
+const GlassCard = ({ children, className = "" }) => (
+  <div className={`relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl ${className}`}>
+    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-50 rounded-2xl" />
+    <div className="relative">{children}</div>
+  </div>
+);
+
+const IconWrapper = ({ children, className = "" }) => (
+  <div className={`relative group ${className}`}>
+    <div className="absolute inset-0 bg-blue-400/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-300" />
+    <div className="relative bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-white/5 rounded-xl p-3">
+      {children}
+    </div>
+  </div>
+);
+
 const Resources = () => {
   const categories = [
     {
@@ -83,30 +99,34 @@ const Resources = () => {
 
   return (
     <>
-    <div className="min-h-screen bg-[#0A0F1C] text-white">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-blue-500/10" />
+    <div className="min-h-screen bg-gray-950 text-white">
+      {/* Enhanced Background Elements */}
+      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-repeat opacity-20" />
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-950/50 via-transparent to-purple-950/50" />
+      <div className="fixed inset-0 backdrop-blur-[120px]" />
 
-      <div className="relative container mx-auto px-4 py-16">
-        {/* Header */}
+      <div className="relative container mx-auto px-4 py-24">
+        {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-6">
-            LEARNING RESOURCES
-          </span>
+          <GlassCard className="inline-block px-6 py-2 mb-6">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold">
+              LEARNING RESOURCES
+            </span>
+          </GlassCard>
+          
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 text-transparent bg-clip-text">
             Resources & Learning Materials
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400/90 max-w-2xl mx-auto">
             Access comprehensive learning materials, practice resources, and downloadable content to enhance your programming journey
           </p>
         </motion.div>
 
-        {/* Resource Categories */}
+        {/* Enhanced Resource Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {categories.map((category, index) => (
             <motion.div
@@ -114,77 +134,94 @@ const Resources = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
-                  <category.icon size={24} />
+              <GlassCard className="h-full p-6 hover:bg-white/[0.03] transition-colors duration-300">
+                <div className="flex items-center gap-4 mb-6">
+                  <IconWrapper>
+                    <category.icon size={24} className="text-blue-400" />
+                  </IconWrapper>
+                  <div>
+                    <h2 className="text-xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+                      {category.title}
+                    </h2>
+                    <p className="text-gray-400/90 text-sm">{category.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-xl font-semibold">{category.title}</h2>
-                  <p className="text-gray-400 text-sm">{category.description}</p>
-                </div>
-              </div>
 
-              <div className="space-y-4">
-                {category.resources.map((resource, idx) => (
-                  <motion.a
-                    key={idx}
-                    href={resource.link}
-                    whileHover={{ x: 5 }}
-                    className="block p-4 bg-gray-900/50 rounded-xl hover:bg-gray-900/80 transition-colors"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
-                        <resource.icon size={20} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white mb-1">{resource.title}</h3>
-                        <p className="text-sm text-gray-400">{resource.description}</p>
-                        <span className="inline-block mt-2 text-xs text-blue-400">
-                          {resource.type} <FaExternalLinkAlt className="inline ml-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
+                <div className="space-y-4">
+                  {category.resources.map((resource, idx) => (
+                    <motion.a
+                      key={idx}
+                      href={resource.link}
+                      whileHover={{ x: 5 }}
+                      className="block group"
+                    >
+                      <GlassCard className="p-4 hover:bg-white/[0.03] transition-all duration-300">
+                        <div className="flex items-start gap-4">
+                          <IconWrapper className="shrink-0">
+                            <resource.icon size={20} className="text-blue-400" />
+                          </IconWrapper>
+                          <div>
+                            <h3 className="font-semibold text-white/90 group-hover:text-white transition-colors duration-300 mb-1">
+                              {resource.title}
+                            </h3>
+                            <p className="text-sm text-gray-400/90">{resource.description}</p>
+                            <span className="inline-flex items-center mt-2 text-xs text-blue-400">
+                              {resource.type}
+                              <FaExternalLinkAlt className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </span>
+                          </div>
+                        </div>
+                      </GlassCard>
+                    </motion.a>
+                  ))}
+                </div>
+              </GlassCard>
             </motion.div>
           ))}
         </div>
 
-        {/* Downloadable Resources */}
+        {/* Enhanced Downloadable Resources */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50"
         >
-          <h2 className="text-2xl font-semibold mb-6">Downloadable Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {downloadableResources.map((resource, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="p-4 bg-gray-900/50 rounded-xl hover:bg-gray-900/80 transition-colors text-left"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
-                    <resource.icon size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">{resource.title}</h3>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs text-gray-400">{resource.format}</span>
-                      <span className="text-xs text-gray-400">•</span>
-                      <span className="text-xs text-gray-400">{resource.size}</span>
+          <GlassCard className="p-6">
+            <h2 className="text-2xl font-semibold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+              Downloadable Resources
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {downloadableResources.map((resource, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full group"
+                >
+                  <GlassCard className="p-4 hover:bg-white/[0.03] transition-all duration-300">
+                    <div className="flex items-center gap-4">
+                      <IconWrapper className="shrink-0">
+                        <resource.icon size={20} className="text-blue-400" />
+                      </IconWrapper>
+                      <div className="flex-grow text-left">
+                        <h3 className="font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
+                          {resource.title}
+                        </h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs text-gray-400/90">{resource.format}</span>
+                          <span className="text-xs text-gray-400/90">•</span>
+                          <span className="text-xs text-gray-400/90">{resource.size}</span>
+                        </div>
+                      </div>
+                      <IconWrapper className="shrink-0">
+                        <FaDownload className="text-blue-400 transform group-hover:scale-110 transition-transform duration-300" />
+                      </IconWrapper>
                     </div>
-                  </div>
-                  <FaDownload className="ml-auto text-blue-400" />
-                </div>
-              </motion.button>
-            ))}
-          </div>
+                  </GlassCard>
+                </motion.button>
+              ))}
+            </div>
+          </GlassCard>
         </motion.div>
       </div>
     </div>
