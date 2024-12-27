@@ -136,11 +136,11 @@ const Cybersecurity = () => {
         </div>
       </div>
 
-      <footer className="py-6 bg-gradient-to-b from-slate-900 to-black text-center text-gray-300">
+      {/* <footer className="py-6 bg-gradient-to-b from-slate-900 to-black text-center text-gray-300">
         <div className="container mx-auto px-6">
           <p>&copy; 2024 USCL. All rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };

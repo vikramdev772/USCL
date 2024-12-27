@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Networking from "../images/Networking.jpg";
 import Webdev from "../images/webdev.jpg";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 // Color configuration object
 const colorConfig = {
@@ -188,6 +189,7 @@ const Courses = () => {
 
   return (
     <>
+    <Navbar/>
       <section className="relative min-h-screen">
         {/* Background Elements */}
         <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-[#0c1322] to-black -z-10" />

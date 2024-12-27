@@ -247,7 +247,7 @@ const Linux = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-gray-800">
+      {/* <footer className="py-8 border-t border-gray-800">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400">&copy; 2024 USCL Linux Essentials. All rights reserved.</p>
@@ -258,7 +258,7 @@ const Linux = () => {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

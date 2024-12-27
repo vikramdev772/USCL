@@ -8,6 +8,7 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import Footer from "./Footer.jsx";
+import Navbar from "./Navbar.jsx";
 
 // Enhanced FloatingIconsBackground with more professional animations
 const FloatingIconsBackground = () => {
@@ -147,6 +148,8 @@ const Landing = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-gray-950 text-white">
       <motion.section
         initial={{ opacity: 0 }}
@@ -319,6 +322,7 @@ const Landing = () => {
       </AnimatePresence>
       <Footer/>
     </div>
+    </>
   );
 };
 

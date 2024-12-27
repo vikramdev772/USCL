@@ -1,49 +1,112 @@
-// src/components/Profile.jsx
+import React, { useState, useEffect } from "react";
 
-import React from 'react';
-import PropTypes from 'prop-types';
+const Profile = () => {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-const Profile = ({ userData }) => {
-  if (!userData) {
-    return (
-      <div className="text-red-500">
-        <p>User data is unavailable.</p>
-      </div>
-    );
+  useEffect(() => {
+    // Replace this URL with your actual API endpoint
+    const apiUrl = "https://jsonplaceholder.typicode.com/users/1";
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUserData({
+          name: data.name,
+          role: "Full Stack Developer", // Add roles manually if not present in the API
+          email: data.email,
+          phone: data.phone,
+          location: `${data.address.city}, ${data.address.street}`,
+          avatar: `https://ui-avatars.com/api/?name=${data.name}`,
+          skills: ["React", "Node.js", "CSS", "JavaScript"],
+          recentActivity: [
+            { title: "Completed React Basics", time: "1 day ago" },
+            { title: "Started Advanced JS", time: "3 days ago" },
+          ],
+        });
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p className="text-center text-blue-500">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">Error: {error}</p>;
   }
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label className="text-sm text-slate-400">Name</label>
-          <p className="text-white">{userData.name}</p>
+    <div className="bg-slate-900 text-white p-6 rounded-lg max-w-md mx-auto">
+      {/* Header Section */}
+      <div className="flex flex-col items-center mb-6">
+        <div className="w-24 h-24">
+          <img
+            src={userData.avatar || "https://via.placeholder.com/96"}
+            alt="User Avatar"
+            className="w-full h-full rounded-full object-cover"
+          />
         </div>
-        <div className="space-y-2">
-          <label className="text-sm text-slate-400">Email</label>
-          <p className="text-white">{userData.email}</p>
+        <h2 className="text-xl font-bold mt-4">{userData.name}</h2>
+        <p className="text-slate-400">{userData.role}</p>
+      </div>
+
+      {/* Contact Section */}
+      <div className="space-y-2 mb-6">
+        <p className="flex items-center">
+          📧 <span className="ml-2">{userData.email}</span>
+        </p>
+        <p className="flex items-center">
+          📞 <span className="ml-2">{userData.phone || "N/A"}</span>
+        </p>
+        <p className="flex items-center">
+          📍 <span className="ml-2">{userData.location || "Not provided"}</span>
+        </p>
+      </div>
+
+      {/* Skills Section */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold mb-2">Skills</h3>
+        <div className="flex flex-wrap gap-2">
+          {userData.skills.map((skill, index) => (
+            <span
+              key={index}
+              className="bg-purple-600 text-white py-1 px-3 rounded-full text-sm"
+            >
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
-      <div className="border-t border-slate-700 my-4" />
-      <div className="space-y-2">
-        <label className="text-sm text-slate-400">Role</label>
-        <p className="text-white">{userData.role}</p>
+
+      {/* Recent Activity */}
+      <div>
+        <h3 className="text-lg font-semibold mb-2">Recent Activity</h3>
+        <ul className="space-y-2">
+          {userData.recentActivity.map((activity, index) => (
+            <li
+              key={index}
+              className="bg-slate-800 p-3 rounded-lg flex justify-between"
+            >
+              <span>{activity.title}</span>
+              <span className="text-slate-400 text-sm">{activity.time}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
-};
-
-Profile.propTypes = {
-  userData: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-    role: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
-};
-
-Profile.defaultProps = {
-  userData: null,
 };
 
 export default Profile;

@@ -204,7 +204,7 @@ const Assessment = () => {
   const progress = (Object.keys(answers).length / questions.length) * 100;
 
   return (
-    <div className="min-h-screen  py-12">
+    <div className="min-h-screen ">
       <div className="max-w-2xl mx-auto px-4">
         {/* Header */}
         <div className="text-center space-y-4 mb-8">

@@ -186,13 +186,13 @@ const Playground = () => {
   return (
     <>
 
-    <div ref={editorRef} className={`min-h-screen ${isFullscreen ? "fullscreen" : ""}  py-12`}>
+    <div ref={editorRef} className={`min-h-screen ${isFullscreen ? "fullscreen" : ""} py-[-300px]`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center px-4 py-2 rounded-full  border border-white/10 mt-[40px]"
+            className="inline-flex items-center px-4 py-2 rounded-full  border border-white/10"
           >
             <Code className="w-4 h-4 text-purple-400 mr-2" />
             <span className="text-purple-400 text-sm">Code Editor</span>
