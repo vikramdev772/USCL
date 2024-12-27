@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import authUrl from '../../api/authURL';
+import Navbar from '../../components/Navbar';
 
 const GlassCard = ({ children, className = "" }) => (
   <div className={`relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl ${className}`}>
@@ -136,6 +137,9 @@ const LoginPage = () => {
   };
 
   return (
+    <>
+    <Navbar/>
+   
     <div className="min-h-screen relative bg-gray-950 text-white">
       {/* Enhanced Background Elements */}
       <div className="fixed inset-0">
@@ -270,6 +274,7 @@ const LoginPage = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import authUrl from '../../api/authURL';
+import Navbar from '../../components/Navbar';
 
 // Enhanced Input Field Component
 const InputField = React.memo(({ icon: Icon, name, value, onChange, placeholder, type, error }) => (
@@ -137,6 +138,8 @@ const SignupPage = () => {
   ];
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-blue-900 to-black overflow-hidden">
       {/* Animated background */}
       <FloatingParticles />
@@ -288,6 +291,7 @@ const SignupPage = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

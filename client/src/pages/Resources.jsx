@@ -13,6 +13,7 @@ import {
   FaRocket
 } from 'react-icons/fa';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const GlassCard = ({ children, className = "" }) => (
   <div className={`relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl ${className}`}>
@@ -99,6 +100,7 @@ const Resources = () => {
 
   return (
     <>
+    <Navbar/>
     <div className="min-h-screen bg-gray-950 text-white">
       {/* Enhanced Background Elements */}
       <div className="fixed inset-0 bg-[url('/grid.svg')] bg-repeat opacity-20" />

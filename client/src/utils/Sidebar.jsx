@@ -21,7 +21,7 @@ import NavItem from './NavItem';
 import UserProfile from './UserProfile';
 import ContentSection from './ContentSection';
 import Dashboard from './Dashboard';
-import MyCourses from './MyCourses';
+// import MyCourses from './MyCourses';
 import Profile from './Profile';
 import Assignments from './Assignments';
 import Playground from '../code/Playground';
@@ -73,12 +73,7 @@ const Sidebar = () => {
       id: 'dashboard',
       description: 'Overview of your progress'
     },
-    { 
-      icon: FaBook, 
-      label: 'My Courses', 
-      id: 'mycourse',
-      description: 'Access your enrolled courses'
-    },
+
     { 
       icon: FaCode, 
       label: 'Playground', 
@@ -147,7 +142,7 @@ const Sidebar = () => {
   const renderContent = () => {
     switch (selectedSection) {
       case 'dashboard': return <Dashboard />;
-      case 'mycourse': return <MyCourses />;
+      // case 'mycourse': return <MyCourses />;
       case 'profile': 
         if (loadingUser) return <div className="text-white">Loading...</div>;
         if (userError) return <div className="text-red-500">{userError}</div>;

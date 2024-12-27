@@ -46,15 +46,16 @@ export default {
         blob: "blob 7s infinite",
         'matrix-rain': 'matrix-rain 20s linear infinite',
         'gradient': 'gradient 6s ease infinite',
-        'slide-up': 'slide-up 0.5s ease-out',
-        'slide-down': 'slide-down 0.5s ease-out',
-        'fade-in': 'fade-in 0.5s ease-out',
-        'bounce-subtle': 'bounce-subtle 1.5s infinite',
-        'spin-slow': 'spin 3s linear infinite',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
-        // ... your existing keyframes
+        blob: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10%)' },
+        },
+        'matrix-rain': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

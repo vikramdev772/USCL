@@ -10,6 +10,7 @@ import {
   FaArrowRight 
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
 
 const GlassCard = ({ children, className = "" }) => (
   <div className={`relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] rounded-2xl ${className}`}>
@@ -73,6 +74,9 @@ const About = () => {
   );
 
   return (
+    <>
+    <Navbar/>
+
     <div className="min-h-screen relative bg-gray-950 text-white">
       {/* Enhanced Background Elements */}
       <div className="fixed inset-0">
@@ -225,6 +229,7 @@ const About = () => {
         </motion.footer>
       </motion.div>
     </div>
+    </>
   );
 };
 
