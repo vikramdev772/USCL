@@ -51,7 +51,8 @@ const courseData = [
   {
     title: "Java Development",
     description: "Dive into Java and master core concepts with comprehensive tutorials and exercises.",
-    image: "https://miro.medium.com/v2/resize:fit:500/1*pu_q-NQV_EnIHBgHdZsrXQ.jpeg",
+    // image: "https://miro.medium.com/v2/resize:fit:500/1*pu_q-NQV_EnIHBgHdZsrXQ.jpeg",
+    image: "https://miro.medium.com/v2/resize:fit:700/1*ePqUMEtYVO5QHZ13iM-Kjw.png",
     link: "/courses/java",
     color: "blue",
   },
