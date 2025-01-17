@@ -131,7 +131,7 @@ const Networking = () => {
                 <div className="relative">
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img
-                      src="https://e0.pxfuel.com/wallpapers/679/344/desktop-wallpaper-network-connection-platform-world-global-gis-tavos.jpg"
+                      src="https://assets.datamation.com/uploads/2023/12/dm_20231214-network-data-model-696x447.png"
                       alt="Networking"
                       className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
                     />

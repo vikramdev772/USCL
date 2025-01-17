@@ -72,7 +72,7 @@ const courseData = [
   {
     title: "Networking",
     description: "Learn how to design, implement, and manage network infrastructures and protocols.",
-    image: Networking,
+    image: "https://assets.datamation.com/uploads/2023/12/dm_20231214-network-data-model-696x447.png",
     link: "/courses/networking",
     color: "cyan",
   },
