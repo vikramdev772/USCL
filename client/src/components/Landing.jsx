@@ -170,7 +170,7 @@ const Landing = () => {
               <FaCode className="text-blue-400 text-4xl" />
             </div>
 
-            <h1 className="text-6xl md:text-7xl font-extrabold mb-8 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-8 leading-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 animate-gradient">
                 United Students
               </span>
