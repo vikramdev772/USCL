@@ -186,8 +186,8 @@ const LinuxCourse = () => {
                     <p className="text-gray-400">Lifetime course access</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-400 line-through">₹9999</p>
-                    <p className="text-4xl font-bold text-white">₹4999</p>
+                    <p className="text-sm text-gray-400 line-through">₹19999</p>
+                    <p className="text-4xl font-bold text-white">₹14999</p>
                   </div>
                 </div>
 

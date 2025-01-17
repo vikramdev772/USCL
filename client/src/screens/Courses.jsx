@@ -49,7 +49,7 @@ const colorConfig = {
 
 const courseData = [
   {
-    title: "Java Programming",
+    title: "Java Development",
     description: "Dive into Java and master core concepts with comprehensive tutorials and exercises.",
     image: "https://miro.medium.com/v2/resize:fit:500/1*pu_q-NQV_EnIHBgHdZsrXQ.jpeg",
     link: "/courses/java",
@@ -84,9 +84,9 @@ const courseData = [
     color: "violet",
   },
   {
-    title: "Web Development",
+    title: "Web development",
     description: "Discover the principles of building and maintaining websites and web applications.",
-    image: Webdev,
+    image: "https://clickysoft.com/wp-content/uploads/2023/11/Benefits-of-MERN-Stack-Developers.jpg",
     link: "/courses/webdevelopment",
     color: "sky",
   },

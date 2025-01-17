@@ -141,7 +141,7 @@ const WebDevelopment = () => {
           >
             <div className="relative rounded-2xl overflow-hidden border border-blue-500/20">
               <img
-                src={Fs}
+                src="https://miro.medium.com/v2/resize:fit:1400/0*bkOlmogReOpRiw4A"
                 alt="Web Development"
                 className="w-full h-auto"
               />

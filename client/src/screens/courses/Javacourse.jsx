@@ -65,7 +65,7 @@ const JavaCourse = () => {
             className="text-center mb-12"
           >
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-              Master Java Programming
+              Master Java Developement
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               A comprehensive course to take you from beginner to professional Java developer
@@ -140,7 +140,7 @@ const JavaCourse = () => {
               <div className="p-8">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-3xl font-bold text-blue-400">Premium Access</h2>
-                  <span className="text-5xl font-bold text-white">₹4999</span>
+                  <span className="text-5xl font-bold text-white">₹14999</span>
                 </div>
                 
                 <ul className="space-y-4 mb-8">

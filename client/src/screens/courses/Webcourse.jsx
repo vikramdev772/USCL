@@ -155,8 +155,8 @@ const WebCourse = () => {
                   <p className="text-gray-400">Complete web development course</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-400 line-through">₹12999</p>
-                  <p className="text-4xl font-bold text-white">₹8999</p>
+                  <p className="text-sm text-gray-400 line-through">₹15000</p>
+                  <p className="text-4xl font-bold text-white">₹12000</p>
                 </div>
               </div>
 

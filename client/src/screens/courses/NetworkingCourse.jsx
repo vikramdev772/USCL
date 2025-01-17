@@ -209,8 +209,8 @@ const NetworkingCourse = () => {
                   <p className="text-gray-400">Complete networking course bundle</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-400 line-through">₹9999</p>
-                  <p className="text-4xl font-bold text-white">₹6999</p>
+                  <p className="text-sm text-gray-400 line-through">₹19999</p>
+                  <p className="text-4xl font-bold text-white">₹16999</p>
                 </div>
               </div>
 
