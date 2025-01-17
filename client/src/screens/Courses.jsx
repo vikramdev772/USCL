@@ -65,7 +65,7 @@ const courseData = [
   {
     title: "C++ Programming",
     description: "Master the fundamentals of C++ and gain a strong foundation in Data Structures and Algorithms (DSA) to enhance problem-solving skills.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq9dbxk51ZpBlxEBGUQN7nAODZdc1BZx29p3TEfnrJYFLOsHnv3KgSu9CToYENFgBsOhs&usqp=CAU",
+    image: "https://www.simplilearn.com/ice9/webinar_thum_image/CPP_Tutorial.jpg",
     link: "/courses/c++",
     color: "red",
   },
